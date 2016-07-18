@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.android.customrenderingcodelab; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">android.content.Context; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">import </span><span class="s1">android.view.LayoutInflater; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s0">import </span><span class="s1">android.view.View; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">android.view.ViewGroup; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">import </span><span class="s1">android.widget.ImageView; 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+<a name="l11"><span class="ln">11   </span></a> 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s0">import </span><span class="s1">com.google.android.gms.ads.AdLoader; 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s0">import </span><span class="s1">com.google.android.gms.ads.doubleclick.PublisherAdRequest; 
+<a name="l14"><span class="ln">14   </span></a></span><span class="s0">import </span><span class="s1">com.google.android.gms.ads.formats.NativeCustomTemplateAd; 
+<a name="l15"><span class="ln">15   </span></a> 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a></span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+<a name="l18"><span class="ln">18   </span></a> 
+<a name="l19"><span class="ln">19   </span></a>    @Override 
+<a name="l20"><span class="ln">20   </span></a>    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+<a name="l21"><span class="ln">21   </span></a>        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+<a name="l22"><span class="ln">22   </span></a>        setContentView(R.layout.activity_main); 
+<a name="l23"><span class="ln">23   </span></a> 
+<a name="l24"><span class="ln">24   </span></a>        AdLoader adLoader = </span><span class="s0">new </span><span class="s1">AdLoader.Builder(getApplicationContext(), 
+<a name="l25"><span class="ln">25   </span></a>                getString(R.string.native_ad_unit_id)) 
+<a name="l26"><span class="ln">26   </span></a>                .forCustomTemplateAd(getString(R.string.native_template_id), 
+<a name="l27"><span class="ln">27   </span></a>                        </span><span class="s0">new </span><span class="s1">NativeCustomTemplateAd.OnCustomTemplateAdLoadedListener() { 
+<a name="l28"><span class="ln">28   </span></a>                            @Override 
+<a name="l29"><span class="ln">29   </span></a>                            </span><span class="s0">public void </span><span class="s1">onCustomTemplateAdLoaded(NativeCustomTemplateAd ad) { 
+<a name="l30"><span class="ln">30   </span></a>                                ViewGroup adView = (ViewGroup) findViewById(R.id.adView); 
+<a name="l31"><span class="ln">31   </span></a>                                displayCustomTemplateAd(adView, ad); 
+<a name="l32"><span class="ln">32   </span></a>                            } 
+<a name="l33"><span class="ln">33   </span></a>                        }, 
+<a name="l34"><span class="ln">34   </span></a>                        </span><span class="s0">null</span><span class="s1">) 
+<a name="l35"><span class="ln">35   </span></a>                .build(); 
+<a name="l36"><span class="ln">36   </span></a> 
+<a name="l37"><span class="ln">37   </span></a>        adLoader.loadAd(</span><span class="s0">new </span><span class="s1">PublisherAdRequest.Builder().build()); 
+<a name="l38"><span class="ln">38   </span></a>    } 
+<a name="l39"><span class="ln">39   </span></a> 
+<a name="l40"><span class="ln">40   </span></a>    </span><span class="s0">private void </span><span class="s1">displayCustomTemplateAd (ViewGroup parent, </span><span class="s0">final </span><span class="s1">NativeCustomTemplateAd ad) { 
+<a name="l41"><span class="ln">41   </span></a>        </span><span class="s2">// Inflate a layout and add it to the parent ViewGroup.</span><span class="s1"> 
+<a name="l42"><span class="ln">42   </span></a>        LayoutInflater inflater = (LayoutInflater) parent.getContext() 
+<a name="l43"><span class="ln">43   </span></a>                .getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+<a name="l44"><span class="ln">44   </span></a>        View adView = inflater.inflate(R.layout.custom_template_ad, parent); 
+<a name="l45"><span class="ln">45   </span></a> 
+<a name="l46"><span class="ln">46   </span></a>        </span><span class="s2">// Show the custom template</span><span class="s1"> 
+<a name="l47"><span class="ln">47   </span></a>        TextView headline = (TextView) findViewById(R.id.headline); 
+<a name="l48"><span class="ln">48   </span></a>        TextView caption = (TextView) findViewById(R.id.caption); 
+<a name="l49"><span class="ln">49   </span></a>        ImageView mainImage = (ImageView) findViewById(R.id.mainImage); 
+<a name="l50"><span class="ln">50   </span></a>        headline.setText(ad.getText(</span><span class="s3">&quot;Headline&quot;</span><span class="s1">)); 
+<a name="l51"><span class="ln">51   </span></a>        caption.setText(ad.getText(</span><span class="s3">&quot;Caption&quot;</span><span class="s1">)); 
+<a name="l52"><span class="ln">52   </span></a>        mainImage.setImageDrawable(ad.getImage(</span><span class="s3">&quot;MainImage&quot;</span><span class="s1">).getDrawable()); 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>        </span><span class="s2">// Record an impression</span><span class="s1"> 
+<a name="l55"><span class="ln">55   </span></a>        ad.recordImpression(); 
+<a name="l56"><span class="ln">56   </span></a> 
+<a name="l57"><span class="ln">57   </span></a>        </span><span class="s2">// Handle clicks on image</span><span class="s1"> 
+<a name="l58"><span class="ln">58   </span></a>        mainImage.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+<a name="l59"><span class="ln">59   </span></a>            @Override 
+<a name="l60"><span class="ln">60   </span></a>            </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+<a name="l61"><span class="ln">61   </span></a>                ad.performClick(</span><span class="s3">&quot;MainImage&quot;</span><span class="s1">); 
+<a name="l62"><span class="ln">62   </span></a>            } 
+<a name="l63"><span class="ln">63   </span></a>        }); 
+<a name="l64"><span class="ln">64   </span></a>    } 
+<a name="l65"><span class="ln">65   </span></a> 
+<a name="l66"><span class="ln">66   </span></a>    @Override 
+<a name="l67"><span class="ln">67   </span></a>    </span><span class="s0">public void </span><span class="s1">onStart() { 
+<a name="l68"><span class="ln">68   </span></a>        </span><span class="s0">super</span><span class="s1">.onStart(); 
+<a name="l69"><span class="ln">69   </span></a>    } 
+<a name="l70"><span class="ln">70   </span></a> 
+<a name="l71"><span class="ln">71   </span></a>    @Override 
+<a name="l72"><span class="ln">72   </span></a>    </span><span class="s0">public void </span><span class="s1">onStop() { 
+<a name="l73"><span class="ln">73   </span></a>        </span><span class="s0">super</span><span class="s1">.onStop(); 
+<a name="l74"><span class="ln">74   </span></a>    } 
+<a name="l75"><span class="ln">75   </span></a>} 
+<a name="l76"><span class="ln">76   </span></a></span></pre>
+</body>
+</html>
