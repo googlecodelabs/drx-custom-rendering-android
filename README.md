@@ -3,6 +3,8 @@
 This folder contains the source code for the Custom Rendered Native Ads
 with Android and DFP codelab.
 
+This is not an official Google product.
+
 ### License
 
 
